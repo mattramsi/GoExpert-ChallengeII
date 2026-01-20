@@ -12,13 +12,11 @@ const (
 	viaCEPName    = "ViaCEP"
 )
 
-// ViaCEPProvider implementa o Provider para a API ViaCEP
 type ViaCEPProvider struct {
 	client  *http.Client
 	baseURL string
 }
 
-// NewViaCEPProvider cria uma nova instância do provider ViaCEP
 func NewViaCEPProvider() *ViaCEPProvider {
 	return &ViaCEPProvider{
 		client: &http.Client{
@@ -28,12 +26,10 @@ func NewViaCEPProvider() *ViaCEPProvider {
 	}
 }
 
-// GetName retorna o nome do provider
 func (v *ViaCEPProvider) GetName() string {
 	return viaCEPName
 }
 
-// viaCEPResponse representa a estrutura de resposta da ViaCEP
 type viaCEPResponse struct {
 	CEP         string `json:"cep"`
 	Logradouro  string `json:"logradouro"`
@@ -48,7 +44,6 @@ type viaCEPResponse struct {
 	Erro        bool   `json:"erro"`
 }
 
-// FetchCEP busca o CEP na API ViaCEP
 func (v *ViaCEPProvider) FetchCEP(cep string) (*Address, error) {
 	url := fmt.Sprintf("%s/%s/json/", v.baseURL, cep)
 

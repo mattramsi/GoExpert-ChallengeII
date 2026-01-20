@@ -18,8 +18,7 @@ func main() {
 	}
 
 	cepInput := strings.TrimSpace(os.Args[1])
-	
-	// Remove caracteres não numéricos do CEP
+
 	cepInput = strings.ReplaceAll(cepInput, "-", "")
 	cepInput = strings.ReplaceAll(cepInput, ".", "")
 	cepInput = strings.ReplaceAll(cepInput, " ", "")
@@ -42,7 +41,6 @@ func main() {
 		log.Fatalf("Erro ao buscar CEP: %v", err)
 	}
 
-	// Exibe os dados do endereço
 	fmt.Println("=== Resultado ===")
 	fmt.Printf("CEP: %s\n", address.CEP)
 	if address.Street != "" {

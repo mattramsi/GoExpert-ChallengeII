@@ -12,13 +12,11 @@ const (
 	brasilAPIName    = "BrasilAPI"
 )
 
-// BrasilAPIProvider implementa o Provider para a API BrasilAPI
 type BrasilAPIProvider struct {
 	client  *http.Client
 	baseURL string
 }
 
-// NewBrasilAPIProvider cria uma nova instância do provider BrasilAPI
 func NewBrasilAPIProvider() *BrasilAPIProvider {
 	return &BrasilAPIProvider{
 		client: &http.Client{
@@ -28,12 +26,10 @@ func NewBrasilAPIProvider() *BrasilAPIProvider {
 	}
 }
 
-// GetName retorna o nome do provider
 func (b *BrasilAPIProvider) GetName() string {
 	return brasilAPIName
 }
 
-// brasilAPIResponse representa a estrutura de resposta da BrasilAPI
 type brasilAPIResponse struct {
 	CEP          string `json:"cep"`
 	State        string `json:"state"`
@@ -43,7 +39,6 @@ type brasilAPIResponse struct {
 	Service      string `json:"service"`
 }
 
-// FetchCEP busca o CEP na API BrasilAPI
 func (b *BrasilAPIProvider) FetchCEP(cep string) (*Address, error) {
 	url := fmt.Sprintf("%s/%s", b.baseURL, cep)
 
